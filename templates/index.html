@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped" id="main-table">
+    <thead>
+        <tr>
+            <th id="main-header">Favorite</th>
+            <th id="main-header">Option</th>
+            <th id="main-header">Date</th>
+            <th id="main-header">거래종류</th>
+            <th id="main-header">구분</th> 
+            <th id="main-header">주소</th>
+            <th id="main-header">룸수(룸)</th>
+            <th id="main-header">금액(만원)</th>
+            <th id="main-header">대출</th>
+            <th id="main-header">주차</th>
+            <th id="main-header">전화번호</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr>
+                <td id="main-cell"><input class="form-check-input" type="checkbox" value="" id="favorite"></td>
+                <td id="main-cell"><input class="form-check-input" type="checkbox" value="" id="selected"></td>
+                <td id="main-cell">{{ row["date"] }}</td>
+                <td id="main-cell">{{ row["sell_type"] }}</td>
+                <td id="main-cell">{{ row["building_type"] }}</td>
+                <td id="main-cell">{{ row["address"] }}</td>
+                <td id="main-cell">{{ row["rooms"] }}</td>
+                <td id="main-cell">{{ row["price"] }}</td>
+                <td id="main-cell">{{ row["loan"] }}</td>
+                <td id="main-cell">{{ row["parking"] }}</td>
+                <td id="main-cell">{{ row["phone_number"] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

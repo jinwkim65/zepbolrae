@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Input
+{% endblock %}
+
+{% block main %}
+<div class="container px">
+    <form action="/input" method="post">
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>거래종류</p>
+                </div>
+                <div class="inline">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="sell_type" id="building">
+                        <option value="매매" selected>매매</option>
+                        <option value="전세">전세</option>
+                        <option value="월세">월세</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>구분</p>
+                </div>
+                <div class="inline">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="building_type" id="type">
+                        <option value="아파트" selected>아파트</option>
+                        <option value="빌라">빌라</option>
+                        <option value="그 외">그 외</option>
+                    </select>
+                </div>
+                <div class="inline">
+                    <input type="text" id="type-other" class="form-control" name="other-input" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>주소</p>
+                </div>
+                <div class="inline">
+                    <input type="text" class="form-control" name="address" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>금액</p>
+                </div>
+                <div class="inline">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="price" required>
+                        <span class="input-group-text">만원</span>
+                    </div>
+                </div>
+                <div class="inline">
+                    <div class="input-group mb-3">
+                        <input type="text" id="price_2" class="form-control" name="price_2" readonly>
+                        <span class="input-group-text">만원</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>룸수</p>
+                </div>
+                <div class="inline">
+                    <select class="form-select form-select-sm" name="rooms">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="3+">3+</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>실사용</p>
+                </div>
+                <div class="inline">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="use" required>
+                        <span class="input-group-text">평</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>대출여부</p>
+                </div>
+                <div class="inline">
+                    <select class="form-select form-select-sm" name="loan">
+                        <option value="1" selected>O</option>
+                        <option value="0">X</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>주차여부</p>
+                </div>
+                <div class="inline">
+                    <select class="form-select form-select-sm" name="parking">
+                        <option value="1" selected>O</option>
+                        <option value="0">X</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>입주시기</p>
+                </div>
+                <div class="inline">
+                    <input type="text" class="form-control" name="date" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>전화번호</p>
+                </div>
+                <div class="inline">
+                    <input type="text" class="form-control" name="phone_number" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <p>비고</p>
+                </div>
+                <div class="inline">
+                    <textarea type="text" class="form-control" placeholder="연차, 옵션정보, 임차내용, 매매시 지분 등" name="comments"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="inline">
+                    <button class="btn btn-secondary">취소</button>
+                </div>
+                <div class="inline">
+                    <button type="submit" class="btn btn-primary">등록</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
