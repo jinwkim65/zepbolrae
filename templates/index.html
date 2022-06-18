@@ -25,7 +25,7 @@ Home
         {% for row in data %}
             <tr>
                 <td id="main-cell"><input class="form-check-input" type="checkbox" value="" id="favorite"></td>
-                <td id="main-cell"><input class="form-check-input" type="checkbox" value="" id="selected"></td>
+                <td id="main-cell"><input class="form-check-input" type="checkbox" value={{ row }} id="selected"></td>
                 <td id="main-cell">{{ row["date"] }}</td>
                 <td id="main-cell">{{ row["sell_type"] }}</td>
                 <td id="main-cell">{{ row["building_type"] }}</td>
