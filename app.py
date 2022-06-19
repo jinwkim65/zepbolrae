@@ -1,4 +1,5 @@
 from audioop import add
+from distutils.command.sdist import sdist
 from cs50 import SQL
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session
@@ -120,15 +121,10 @@ def index():
             selections = selected_list[:-1]
             selections_info = []
             for s in selections:
-                selections_info.append(db.execute("SELECT * FROM selling WHERE id = ?", s))
-            sending_text = []
-            for info in selections_info:
-                sd = info[0]
-                st = f"주소: {sd['address']}\\n금액: {sd['price']}\\n룸수: {sd['rooms']}\\n실사용: {sd['use']} 평\\n대출여부: {sd['loan']}\\n주차여부: {sd['parking']}\\n입주시기: {sd['date']}\\n\\n"
-                sending_text.append(st)
-            print(sending_text)
+                selections_info.append(db.execute("SELECT * FROM selling WHERE id = ?", s)[0])
             all_data = db.execute("SELECT * FROM selling WHERE user = ?", user)
-            return render_template("index.html", data = all_data, sending_text = sending_text, sendtext = True)
+            print(selections_info)
+            return render_template("index.html", data = all_data, selections = selections_info, sendtext = True)
         else:
             return redirect("/")
     else:

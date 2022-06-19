@@ -57,11 +57,14 @@ Home
             title: "testing",
             description: "{% for row in sending_text %} {{ row | safe }} {% endfor %}",
             imageUrl:
-                '',
-            link: {
-                mobileWebUrl: 'https://jinwkim65.github.io/kakaotest/',
-                webUrl: 'https://jinwkim65.github.io/kakaotest/',
+                'https://media.istockphoto.com/photos/3d-rendering-brick-house-isolation-on-a-white-3d-illustration-picture-id1337434489?b=1&k=20&m=1337434489&s=170667a&w=0&h=Be7c31gM3b-sDHIRqCXPNcqamruzf9RUhVrdL3Wrs60=',
             },
+            itemContent: {
+                profileText: 'Name and Phone Number',
+                titleImageText: '주소: {{ row["address"] }}',
+                items: [{'룸수':'{{ row["rooms"]}}'}, {'실사용':'{{ row["use"] }}평'}, {'대출여부':'{{ row["loan"] }}'}, {'주차여부':'{{ row["parking"] }}'}, {'입주시기':'{{ row["date"] }}'}],
+                sum: "금액",
+                sum_op: '{{ row["price"] }}만원'
             },
             buttons: [
             {
