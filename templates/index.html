@@ -47,8 +47,9 @@ Home
 </form>
 
 {% if sendtext == True %}
+{% for row in selections %}
     <script type="text/javascript">
-        Kakao.init('8bdf28ece78dd702aa793f14b5cc0538');
+        kakaoinit();
         function sendLink() {
         Kakao.Link.sendDefault({
             objectType: 'feed',
@@ -61,11 +62,6 @@ Home
                 mobileWebUrl: 'https://jinwkim65.github.io/kakaotest/',
                 webUrl: 'https://jinwkim65.github.io/kakaotest/',
             },
-            },
-            social: {
-            likeCount: 0, //99999 is the maximum
-            commentCount: 0, //99999 is the maximum
-            sharedCount: 0, //99999 is the maximum
             },
             buttons: [
             {
@@ -80,6 +76,7 @@ Home
         }
         sendLink()
     </script>
+{% endfor %}
 {% endif %}
 
 {% endblock %}
