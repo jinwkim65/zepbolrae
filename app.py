@@ -101,10 +101,6 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-@app.route("/test")
-def test():
-    return render_template("test.html")
-
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
@@ -128,7 +124,7 @@ def index():
             sending_text = []
             for info in selections_info:
                 sd = info[0]
-                st = f"주소: {sd['address']}\n금액: {sd['price']}\n룸수: {sd['rooms']}\n실사용: {sd['use']} 평\n대출여부: {sd['loan']}\n주차여부: {sd['parking']}\n입주시기: {sd['date']}\n\n"
+                st = f"주소: {sd['address']}\\n금액: {sd['price']}\\n룸수: {sd['rooms']}\\n실사용: {sd['use']} 평\\n대출여부: {sd['loan']}\\n주차여부: {sd['parking']}\\n입주시기: {sd['date']}\\n\\n"
                 sending_text.append(st)
             print(sending_text)
             all_data = db.execute("SELECT * FROM selling WHERE user = ?", user)
