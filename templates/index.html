@@ -5,7 +5,7 @@ Home
 {% endblock %}
 
 {% block main %}
-<form action="/" method="post">
+<form action="/" method="post" onload="kakaoinit()">
     <table class="table table-striped" id="main-table">
         <thead>
             <tr>
@@ -63,7 +63,7 @@ Home
                 },
             },
             itemContent: {
-                profileText: 'Name and Phone Number',
+                profileText: 'Name ({{row["phone_number"] }})',
                 titleImageText: '주소: {{ row["address"] }}',
                 items: [
                     {'item':'룸수', 'itemOp':'{{ row["rooms"]}}'},
