@@ -5,7 +5,7 @@ Home
 {% endblock %}
 
 {% block main %}
-<form action="/" method="post" onload="kakaoinit()">
+<form action="/" method="post">
     <table class="table table-striped" id="main-table">
         <thead>
             <tr>
@@ -49,7 +49,6 @@ Home
 {% if sendtext == True %}
 {% for row in selections %}
     <script type="text/javascript">
-        kakaoinit();
         function sendLink() {
         Kakao.Link.sendDefault({
             objectType: 'feed',
@@ -87,6 +86,7 @@ Home
         })
         }
         sendLink()
+        console.log("{{ row | safe }}")
     </script>
 {% endfor %}
 {% endif %}
