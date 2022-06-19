@@ -5,39 +5,82 @@ Home
 {% endblock %}
 
 {% block main %}
-<table class="table table-striped" id="main-table">
-    <thead>
-        <tr>
-            <th id="main-header">Favorite</th>
-            <th id="main-header">Option</th>
-            <th id="main-header">Date</th>
-            <th id="main-header">거래종류</th>
-            <th id="main-header">구분</th> 
-            <th id="main-header">주소</th>
-            <th id="main-header">룸수(룸)</th>
-            <th id="main-header">금액(만원)</th>
-            <th id="main-header">대출</th>
-            <th id="main-header">주차</th>
-            <th id="main-header">전화번호</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in data %}
+<form action="/" method="post">
+    <table class="table table-striped" id="main-table">
+        <thead>
             <tr>
-                <td id="main-cell"><input class="form-check-input" type="checkbox" value="" id="favorite"></td>
-                <td id="main-cell"><input class="form-check-input" type="checkbox" value={{ row }} id="selected"></td>
-                <td id="main-cell">{{ row["date"] }}</td>
-                <td id="main-cell">{{ row["sell_type"] }}</td>
-                <td id="main-cell">{{ row["building_type"] }}</td>
-                <td id="main-cell">{{ row["address"] }}</td>
-                <td id="main-cell">{{ row["rooms"] }}</td>
-                <td id="main-cell">{{ row["price"] }}</td>
-                <td id="main-cell">{{ row["loan"] }}</td>
-                <td id="main-cell">{{ row["parking"] }}</td>
-                <td id="main-cell">{{ row["phone_number"] }}</td>
+                <th id="main-header">Favorite</th>
+                <th id="main-header">Option</th>
+                <th id="main-header">Date</th>
+                <th id="main-header">거래종류</th>
+                <th id="main-header">구분</th> 
+                <th id="main-header">주소</th>
+                <th id="main-header">룸수(룸)</th>
+                <th id="main-header">금액(만원)</th>
+                <th id="main-header">대출</th>
+                <th id="main-header">주차</th>
+                <th id="main-header">전화번호</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td id="main-cell"><input class="form-check-input" type="checkbox" value="" id="favorite"></td>
+                    <td id="main-cell"><input class="form-check-input" type="checkbox" value={{ row["id"] }} name={{ row["id"] }}></td>
+                    <td id="main-cell">{{ row["date"] }}</td>
+                    <td id="main-cell">{{ row["sell_type"] }}</td>
+                    <td id="main-cell">{{ row["building_type"] }}</td>
+                    <td id="main-cell">{{ row["address"] }}</td>
+                    <td id="main-cell">{{ row["rooms"] }}</td>
+                    <td id="main-cell">{{ row["price"] }}</td>
+                    <td id="main-cell">{{ row["loan"] }}</td>
+                    <td id="main-cell">{{ row["parking"] }}</td>
+                    <td id="main-cell">{{ row["phone_number"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="inline">
+        <button type="submit" class="btn btn-secondary" name="delete" value="delete">Delete</button>
+        <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+    </div>
+</form>
+
+{% if sendtext == True %}
+    <script type="text/javascript">
+        Kakao.init('8bdf28ece78dd702aa793f14b5cc0538');
+        function sendLink() {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+            title: '{% for row in sending_text %} {{ row }} {% endfor %}',
+            description: '',
+            imageUrl:
+                '',
+            link: {
+                mobileWebUrl: 'https://jinwkim65.github.io/kakaotest/',
+                webUrl: 'https://jinwkim65.github.io/kakaotest/',
+            },
+            },
+            social: {
+            likeCount: 0, //99999 is the maximum
+            commentCount: 0, //99999 is the maximum
+            sharedCount: 0, //99999 is the maximum
+            },
+            buttons: [
+            {
+                title: 'Click button!',
+                link: {
+                mobileWebUrl: 'https://jinwkim65.github.io/kakaotest/',
+                webUrl: 'https://jinwkim65.github.io/kakaotest/',
+                },
+            },
+            ],
+        })
+        }
+        sendLink()
+    </script>
+
+{% endif %}
 
 {% endblock %}

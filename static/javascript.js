@@ -20,3 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 });
+
+function sendLink() {
+    console.log("Yes");
+}

@@ -101,12 +101,43 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-@app.route("/")
+@app.route("/test")
+def test():
+    return render_template("test.html")
+
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     user = session["user_id"]
-    selling_data = db.execute("SELECT * FROM selling where user = ?", user)
-    return render_template("index.html", data = selling_data)
+    selected_list = []
+    if request.method == "POST":
+        selected_form = request.form
+        for s in selected_form:
+            selected_list.append(s)
+        # Delete
+        if selected_list[-1] == "delete":
+            for s in selected_list:
+                db.execute("DELETE FROM selling WHERE id = ?", s)
+            return redirect("/")
+        # Submit
+        elif selected_list[-1] == "submit":
+            selections = selected_list[:-1]
+            selections_info = []
+            for s in selections:
+                selections_info.append(db.execute("SELECT * FROM selling WHERE id = ?", s))
+            sending_text = []
+            for info in selections_info:
+                sd = info[0]
+                st = f"주소: {sd['address']}\n금액: {sd['price']}\n룸수: {sd['rooms']}\n실사용: {sd['use']} 평\n대출여부: {sd['loan']}\n주차여부: {sd['parking']}\n입주시기: {sd['date']}\n\n"
+                sending_text.append(st)
+            print(sending_text)
+            all_data = db.execute("SELECT * FROM selling WHERE user = ?", user)
+            return render_template("index.html", data = all_data, sending_text = sending_text, sendtext = True)
+        else:
+            return redirect("/")
+    else:
+        sd = db.execute("SELECT * FROM selling WHERE user = ?", user)
+        return render_template("index.html", data = sd, sendtext = False)
 
 @app.route("/input", methods=["GET", "POST"])
 @login_required
