@@ -156,3 +156,7 @@ def input():
         return redirect("/")
     else:
         return render_template("input.html")
+
+@app.route("/testing", methods=["GET", "POST"])
+def testing():
+    return render_template("testing.html")
